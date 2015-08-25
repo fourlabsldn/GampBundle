@@ -1,5 +1,5 @@
 {
-    "name": "four-labs/gamp-bundle",
+    "name": "fourlabs/gamp-bundle",
     "type": "symfony-bundle",
     "description": "Google Analytics Measurement Protocol Package for Symfony2",
     "keywords": ["esoft", "ewarp"],
