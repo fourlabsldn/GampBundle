@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="gamp.analytics.class">FourLabs\GampBundle\Service\AnalyticsFactory</parameter>
+    </parameters>
+
+    <services>
+        <service id="gamp.analytics.factory" class="%gamp.analytics.class%" public="false" />
+
+        <service id="gamp.analytics" class="TheIconic\Tracking\GoogleAnalytics\Analytics">
+            <factory service="gamp.analytics.factory" method="createAnalytics" />
+            <argument type="service" id="request_stack" />
+            <argument>%gamp.protocol_version%</argument>
+            <argument>%gamp.tracking_id%</argument>
+            <argument>%gamp.use_ssl%</argument>
+            <argument>%gamp.anonymize_ip%</argument>
+            <argument>%gamp.async_requests%</argument>
+        </service>
+    </services>
+</container>
