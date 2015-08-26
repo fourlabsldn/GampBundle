@@ -34,36 +34,46 @@ public function registerBundles()
 ### Config Overview
 
 Set your Google Analytics Tracking / Web Property ID in `tracking_id` key **[REQUIRED]**
+
 See: https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#tid
 
 ``` yaml
 tracking_id: 'UA-XXXX-Y'
 ```
 
+
 *All other configuration options are optional, use as per your requirements.*
 
+
 The Protocol version. The current value is '1'.
+
 See: https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#v
 
 ``` yaml
 protocol_version: 1
 ```
 
+
 To send data over SSL, set `use_ssl` to true.
+
 See: https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#tid
 
 ``` yaml
 use_ssl: true
 ```
 
+
 To Anonymize IP, set `anonymize_ip` to true.
+
 See: https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#aip
 
 ``` yaml
 anonymize_ip: true
 ```
 
+
 To Make Async Requests, set `async_requests` to true.
+
 See: When set to True, All the requests would be made non-blocking (Async).
 
 
