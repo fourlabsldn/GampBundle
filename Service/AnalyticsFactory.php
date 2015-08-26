@@ -14,6 +14,8 @@ class AnalyticsFactory
         $analytics
             ->setProtocolVersion($version)
             ->setTrackingId($trackingId)
+            ->setAnonymizeIp($anonymize)
+            ->setAsyncRequest($async)
         ;
 
         if(!is_null($request = $requestStack->getCurrentRequest())) {
