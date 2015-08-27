@@ -6,7 +6,7 @@ Google Analytics Measurement Protocol Package for Symfony2. Supports all GA Meas
 
 ## Installation
 ### Download the Bundle
-Open a command console, enter your project directory and execute the following command to download the latest stable version of this bundle:
+Open a command console, enter your project directory and execute the following command to download the latest version of this bundle:
 
 ``` bash
 $ composer require fourlabs/gamp-bundle dev-master
@@ -38,14 +38,12 @@ Set your Google Analytics Tracking / Web Property ID in `tracking_id` key **[REQ
 See: https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#tid
 
 ``` yaml
-tracking_id: 'UA-XXXX-Y'
+tracking_id: UA-XXXX-Y
 ```
 
+All other configuration options are optional, use as per your requirements.
 
-*All other configuration options are optional, use as per your requirements.*
-
-
-The Protocol version. The current value is '1'.
+The Protocol version. The current value is '1'. Default: 1
 
 See: https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#v
 
@@ -53,8 +51,7 @@ See: https://developers.google.com/analytics/devguides/collection/protocol/v1/pa
 protocol_version: 1
 ```
 
-
-To send data over SSL, set `use_ssl` to true.
+To send data over SSL, set `use_ssl` to true. Default: true
 
 See: https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#tid
 
@@ -62,8 +59,7 @@ See: https://developers.google.com/analytics/devguides/collection/protocol/v1/pa
 use_ssl: true
 ```
 
-
-To Anonymize IP, set `anonymize_ip` to true.
+To Anonymize IP, set `anonymize_ip` to true. Default: false
 
 See: https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#aip
 
@@ -71,11 +67,7 @@ See: https://developers.google.com/analytics/devguides/collection/protocol/v1/pa
 anonymize_ip: true
 ```
 
-
-To Make Async Requests, set `async_requests` to true.
-
-See: When set to True, All the requests would be made non-blocking (Async).
-
+To Make Async Requests, set `async_requests` to true. Default: true
 
 ``` yaml
 async_requests: true
@@ -89,9 +81,16 @@ Refer [the library's documentation][2] for other remaining methods and examples,
 
 [2]: https://github.com/theiconic/php-ga-measurement-protocol#usage
 
+## To Do
+- Unit tests
+
 ## Credits
 
 This package is a wrapper around the GA Measurement Protocol PHP Library. Thanks to the guys @ [THE ICONIC][1] who developed the library!
 
 [1]: https://github.com/theiconic/php-ga-measurement-protocol
 [2]: https://github.com/theiconic/php-ga-measurement-protocol#usage
+
+## License
+
+[MIT](LICENSE)
