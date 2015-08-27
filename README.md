@@ -50,9 +50,9 @@ $this->get('gamp.analytics')
 ;
 ```
 
-Refer [the library's documentation][2] for other remaining methods and examples, they all work. This library 100% supports all GAMP features.
+Refer to [the library's documentation][2] for other remaining methods and examples, they all work. This library 100% supports all GAMP features.
 
-> **Note:** You don't have to use the protocol version, tracking id, anonymize ip and async request (non-blocking) methods from the original library as they're automatically set in Service Provider when the package is initialized based on your config file.
+> **Note:** You don't have to use the protocol version, tracking id, anonymize ip and async request (non-blocking) methods as they're automatically set in based on your config file.
 
 [2]: https://github.com/theiconic/php-ga-measurement-protocol#usage
 
