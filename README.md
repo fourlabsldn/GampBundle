@@ -31,7 +31,32 @@ public function registerBundles()
 }
 ```
 
-### Config Overview
+## Usage
+
+##### Example
+
+``` php
+$this->get('gamp.analytics')
+    ->setTransactionId('7778922')
+    ->setAffiliation('THE ICONIC')
+    ->setRevenue(250.0)
+    ->setTax(25.0)
+    ->setShipping(15.0)
+    ->setCouponCode('MY_COUPON')
+    ->setProductActionToPurchase()
+    ->setEventCategory('Checkout')
+    ->setEventAction('Purchase')
+    ->sendEvent()
+;
+```
+
+Refer [the library's documentation][2] for other remaining methods and examples, they all work. This library 100% supports all GAMP features.
+
+> **Note:** You don't have to use the protocol version, tracking id, anonymize ip and async request (non-blocking) methods from the original library as they're automatically set in Service Provider when the package is initialized based on your config file.
+
+[2]: https://github.com/theiconic/php-ga-measurement-protocol#usage
+
+### Configuration
 
 Set your Google Analytics Tracking / Web Property ID in `tracking_id` key **[REQUIRED]**
 
@@ -72,14 +97,6 @@ To Make Async Requests, set `async_requests` to true. Default: true
 ``` yaml
 async_requests: true
 ```
-
-...
-
-Refer [the library's documentation][2] for other remaining methods and examples, they all work.
-
-> **Note:** You don't have to use the protocol version, tracking id, anonymize ip and async request (non-blocking) methods from the original library as they're automatically set in Service Provider when the package is initialized based on your config file.
-
-[2]: https://github.com/theiconic/php-ga-measurement-protocol#usage
 
 ## To Do
 - Unit tests

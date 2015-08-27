@@ -2,7 +2,7 @@
     "name": "fourlabs/gamp-bundle",
     "type": "symfony-bundle",
     "description": "Google Analytics Measurement Protocol Package for Symfony2",
-    "keywords": ["esoft", "ewarp"],
+    "keywords": ["google", "analytics", "gamp", "tracking"],
     "homepage": "http://fourlabs.co.uk",
     "license": "MIT",
     "minimum-stability": "dev",
@@ -18,7 +18,6 @@
         "symfony/framework-bundle": "~2.4 || ~3.0"
     },
     "autoload": {
-        "psr-0": { "FourLabs\\GampBundle": "" }
-    },
-    "target-dir": "FourLabs/GampBundle"
+        "psr-4": { "FourLabs\\GampBundle\\": "" }
+    }
 }
