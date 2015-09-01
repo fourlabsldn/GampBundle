@@ -3,6 +3,7 @@ Google Analytics Measurement Protocol Package for Symfony2. Supports all GA Meas
 
 [![Total Downloads](https://poser.pugx.org/fourlabs/gamp-bundle/downloads)](https://packagist.org/packages/fourlabs/gamp-bundle)
 [![License](https://poser.pugx.org/fourlabs/gamp-bundle/license)](https://packagist.org/packages/fourlabs/gamp-bundle)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/65a665f5-d868-40e4-9cee-1981958f018a/mini.png)](https://insight.sensiolabs.com/projects/65a665f5-d868-40e4-9cee-1981958f018a)
 
 ## Installation
 ### Download the Bundle
