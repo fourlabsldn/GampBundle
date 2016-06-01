@@ -25,9 +25,10 @@ class AnalyticsFactory
             ;
 
             // set clientId from ga cookie if exists
-            $clientId = $this->parseCookie($request->cookies->get('_ga', null))['cid'];
-            if(!empty($clientId))
-                $analytics->setClientId();
+            if($request->cookies->has('_ga')){
+                $clientId = $this->parseCookie($request->cookies->get('_ga'))['cid'];
+                $analytics->setClientId($clientId);
+            }
 
             // Also, you can set clientID later like this:
             // $this->get('gamp.analytics')->setClientId($user->getId());
@@ -44,7 +45,7 @@ class AnalyticsFactory
      */
     public function parseCookie($cookie = null)
     {
-        // If _ga cookie is null try to use the default _ga cookie
+        // If $cookie is null try to use the default _ga cookie
         if(empty($cookie)){
             $cookie = $_COOKIE["_ga"];
         }
