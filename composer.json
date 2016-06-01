@@ -1,5 +1,6 @@
 {
     "name": "fourlabs/gamp-bundle",
+    "version": "1.1.0",
     "type": "symfony-bundle",
     "description": "Google Analytics Measurement Protocol Package for Symfony2",
     "keywords": ["google", "analytics", "gamp", "tracking"],
@@ -14,7 +15,7 @@
     ],
     "require": {
         "php": ">=5.5",
-        "theiconic/php-ga-measurement-protocol": "^2.0",
+        "theiconic/php-ga-measurement-protocol": "^1.1",
         "symfony/framework-bundle": "~2.4 || ~3.0"
     },
     "autoload": {
