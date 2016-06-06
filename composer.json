@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5",
+        "php": ">=5.4",
         "theiconic/php-ga-measurement-protocol": "^1.1",
         "symfony/framework-bundle": "~2.4 || ~3.0"
     },
