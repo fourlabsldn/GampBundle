@@ -50,7 +50,7 @@ class AnalyticsFactory
             $cookie = $_COOKIE["_ga"];
         }
 
-        list($version, $domainDepth, $cid1, $cid2) = explode('[\.]', $cookie,4);
+        list($version, $domainDepth, $cid1, $cid2) = explode('.', $cookie,4);
 
         return array(
             'version' => $version,
