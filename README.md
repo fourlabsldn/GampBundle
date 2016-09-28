@@ -1,5 +1,5 @@
 # GAMP Bundle
-Google Analytics Measurement Protocol Package for Symfony2. Supports all GA Measurement Protocol API methods.
+Google Analytics Measurement Protocol Package for Symfony. Supports all GA Measurement Protocol API methods.
 
 [![Total Downloads](https://poser.pugx.org/fourlabs/gamp-bundle/downloads)](https://packagist.org/packages/fourlabs/gamp-bundle)
 [![License](https://poser.pugx.org/fourlabs/gamp-bundle/license)](https://packagist.org/packages/fourlabs/gamp-bundle)

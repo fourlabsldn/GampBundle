@@ -15,7 +15,7 @@
     ],
     "require": {
         "php": ">=5.5",
-        "theiconic/php-ga-measurement-protocol": "^2.0",
+        "theiconic/php-ga-measurement-protocol": "^2.3.0",
         "symfony/framework-bundle": "~2.4 || ~3.0"
     },
     "autoload": {
