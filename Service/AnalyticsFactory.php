@@ -45,13 +45,8 @@ class AnalyticsFactory
      * @return array(version, domainDepth, cid)
      *                        Example of GA cookie: _ga:GA1.2.492973748.1449824416
      */
-    public function parseCookie($cookie = null)
+    public function parseCookie($cookie)
     {
-        // If $cookie is null try to use the default _ga cookie
-        if (empty($cookie)) {
-            $cookie = $_COOKIE['_ga'];
-        }
-
         list($version, $domainDepth, $cid1, $cid2) = explode('.', $cookie, 4);
 
         return array(
@@ -61,3 +56,4 @@ class AnalyticsFactory
         );
     }
 }
+
