@@ -17,7 +17,7 @@ class FourLabsGampExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        foreach($config as $key => $value) {
+        foreach ($config as $key => $value) {
             $container->setParameter(
                 sprintf('gamp.%s', $key),
                 $value
