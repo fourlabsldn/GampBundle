@@ -19,9 +19,10 @@ class AnalyticsFactory
         ;
 
         if (!is_null($request = $requestStack->getCurrentRequest())) {
+            $userAgent = !is_null($request->headers->get('User-Agent')) ? $request->headers->get('User-Agent') : '';
             $analytics
                 ->setIpOverride($request->getClientIp())
-                ->setUserAgentOverride($request->headers->get('User-Agent'))
+                ->setUserAgentOverride($userAgent)
             ;
 
             // set clientId from ga cookie if exists
