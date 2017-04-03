@@ -9,12 +9,13 @@ class AnalyticsFactory
 {
     /**
      * @param RequestStack $requestStack
-     * @param int $version
-     * @param string $trackingId
-     * @param bool $ssl
-     * @param bool $anonymize
-     * @param bool $async
-     * @param bool $debug
+     * @param int          $version
+     * @param string       $trackingId
+     * @param bool         $ssl
+     * @param bool         $anonymize
+     * @param bool         $async
+     * @param bool         $debug
+     *
      * @return Analytics
      */
     public function createAnalytics(RequestStack $requestStack, $version, $trackingId, $ssl, $anonymize, $async, $debug)
