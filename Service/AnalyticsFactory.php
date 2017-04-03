@@ -7,7 +7,17 @@ use TheIconic\Tracking\GoogleAnalytics\Analytics;
 
 class AnalyticsFactory
 {
-    public function createAnalytics(RequestStack $requestStack, $version, $trackingId, $ssl, $anonymize, $async)
+    /**
+     * @param RequestStack $requestStack
+     * @param int $version
+     * @param string $trackingId
+     * @param bool $ssl
+     * @param bool $anonymize
+     * @param bool $async
+     * @param bool $debug
+     * @return Analytics
+     */
+    public function createAnalytics(RequestStack $requestStack, $version, $trackingId, $ssl, $anonymize, $async, $debug)
     {
         $analytics = new Analytics($ssl);
 
@@ -15,7 +25,8 @@ class AnalyticsFactory
             ->setProtocolVersion($version)
             ->setTrackingId($trackingId)
             ->setAnonymizeIp($anonymize)
-            ->setAsyncRequest($async)
+            ->setAsyncRequest($async && !$debug)
+            ->setDebug($debug)
         ;
 
         if (!is_null($request = $requestStack->getCurrentRequest())) {
@@ -25,14 +36,11 @@ class AnalyticsFactory
                 ->setUserAgentOverride($userAgent)
             ;
 
-            // set clientId from ga cookie if exists
+            // set clientId from ga cookie if exists, otherwise this must be set at a later point
             if ($request->cookies->has('_ga')) {
                 $clientId = $this->parseCookie($request->cookies->get('_ga'))['cid'];
                 $analytics->setClientId($clientId);
             }
-
-            // Also, you can set clientID later like this:
-            // $this->get('gamp.analytics')->setClientId($user->getId());
         }
 
         return $analytics;
