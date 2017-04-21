@@ -15,12 +15,13 @@ class AnalyticsFactory
      * @param bool         $anonymize
      * @param bool         $async
      * @param bool         $debug
+     * @param bool         $enabled
      *
      * @return Analytics
      */
-    public function createAnalytics(RequestStack $requestStack, $version, $trackingId, $ssl, $anonymize, $async, $debug)
+    public function createAnalytics(RequestStack $requestStack, $version, $trackingId, $ssl, $anonymize, $async, $debug, $enabled)
     {
-        $analytics = new Analytics($ssl);
+        $analytics = new Analytics($ssl, !$enabled);
 
         $analytics
             ->setProtocolVersion($version)

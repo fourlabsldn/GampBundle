@@ -86,6 +86,7 @@ Example of configuration in `app/config.yml`:
         use_ssl: true
         anonymize_ip: false
         async_requests: true
+        enabled: true
 
 Set your Google Analytics Tracking / Web Property ID in `tracking_id` key **[REQUIRED]**
 
@@ -125,6 +126,12 @@ To Make Async Requests, set `async_requests` to true. Default: true
 
 ``` yaml
 async_requests: true
+```
+
+To enable collect events, set `enabled` to true. Default: false
+
+``` yaml
+enabled: true
 ```
 
 ## To Do
