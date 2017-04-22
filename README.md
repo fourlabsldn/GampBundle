@@ -128,10 +128,10 @@ To Make Async Requests, set `async_requests` to true. Default: true
 async_requests: true
 ```
 
-When sandbox mode is enabled, no hits are actually sent to GA. In this case the library returns a AnalyticsResponseInterface object that with empty values. Default: true
+When sandbox mode is enabled, no hits are actually sent to GA. In this case the library returns a AnalyticsResponseInterface object that with empty values. Default: false
 
 ``` yaml
-sandbox: false
+sandbox: true
 ```
 
 ## To Do
