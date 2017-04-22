@@ -33,8 +33,8 @@ class Configuration implements ConfigurationInterface
                 ->booleanNode('async_requests')
                     ->defaultTrue()
                 ->end()
-                ->booleanNode('enabled')
-                    ->defaultFalse()
+                ->booleanNode('sandbox')
+                    ->defaultTrue()
                 ->end()
             ->end()
         ;
