@@ -86,6 +86,7 @@ Example of configuration in `app/config.yml`:
         use_ssl: true
         anonymize_ip: false
         async_requests: true
+        sandbox: true
 
 Set your Google Analytics Tracking / Web Property ID in `tracking_id` key **[REQUIRED]**
 
@@ -125,6 +126,12 @@ To Make Async Requests, set `async_requests` to true. Default: true
 
 ``` yaml
 async_requests: true
+```
+
+When sandbox mode is enabled, no hits are actually sent to GA. In this case the library returns a AnalyticsResponseInterface object that with empty values. Default: false
+
+``` yaml
+sandbox: true
 ```
 
 ## To Do
