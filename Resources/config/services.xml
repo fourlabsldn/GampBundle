@@ -10,7 +10,7 @@
     <services>
         <service id="gamp.analytics.factory" class="%gamp.analytics.class%" public="false" />
 
-        <service id="gamp.analytics" class="TheIconic\Tracking\GoogleAnalytics\Analytics">
+        <service id="gamp.analytics" class="TheIconic\Tracking\GoogleAnalytics\Analytics" shared="false">
             <factory service="gamp.analytics.factory" method="createAnalytics" />
             <argument type="service" id="request_stack" />
             <argument>%gamp.protocol_version%</argument>

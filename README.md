@@ -53,6 +53,8 @@ public function registerBundles()
 
 ## Usage
 
+This bundle exposes the service `gamp.analytics`. It is a [none shared service][3], i.e. each time you retrieve the service you'll get a *new* instance.
+
 ##### Example
 
 ``` php
@@ -143,6 +145,7 @@ This package is a wrapper around the GA Measurement Protocol PHP Library. Thanks
 
 [1]: https://github.com/theiconic/php-ga-measurement-protocol
 [2]: https://github.com/theiconic/php-ga-measurement-protocol#usage
+[3]: http://symfony.com/doc/current/service_container/shared.html
 
 ## License
 
