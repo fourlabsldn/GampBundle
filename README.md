@@ -53,7 +53,7 @@ public function registerBundles()
 
 ## Usage
 
-This bundle exposes the service `gamp.analytics`. It is a [none shared service][3], i.e. each time you retrieve the service you'll get a *new* instance.
+This bundle exposes the service `gamp.analytics`. It is a [non shared service][3], i.e. each time you retrieve the service you'll get a *new* instance.
 
 ##### Example
 
