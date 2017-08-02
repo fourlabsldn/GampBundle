@@ -5,7 +5,6 @@
     "keywords": ["google", "analytics", "gamp", "tracking"],
     "homepage": "https://fourlabs.co.uk",
     "license": "MIT",
-    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Four Labs",
@@ -13,13 +12,16 @@
         },
         {
             "name": "Other contributors",
-            "homepage": "https://github.com/foaly-nr1/FourLabsEsoftBundle/graphs/contributors"
+            "homepage": "https://github.com/fourlabsldn/GampBundle/graphs/contributors"
         }
     ],
     "require": {
         "php": ">=5.5",
-        "theiconic/php-ga-measurement-protocol": "^2.6",
+        "theiconic/php-ga-measurement-protocol": "^2.7",
         "symfony/framework-bundle": "~2.4 || ~3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
     },
     "autoload": {
         "psr-4": { "FourLabs\\GampBundle\\": "" }

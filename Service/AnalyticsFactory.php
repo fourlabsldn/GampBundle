@@ -31,8 +31,8 @@ class AnalyticsFactory
             ->setDebug($debug)
         ;
 
-        if (!is_null($request = $requestStack->getCurrentRequest())) {
-            $userAgent = null === $request->headers->get('User-Agent') ? '' : $request->headers->get('User-Agent');
+        if (($request = $requestStack->getCurrentRequest())) {
+            $userAgent = $request->headers->has('User-Agent') ? $request->headers->get('User-Agent') : '';
             $analytics
                 ->setIpOverride($request->getClientIp())
                 ->setUserAgentOverride($userAgent)
@@ -40,8 +40,8 @@ class AnalyticsFactory
 
             // set clientId from ga cookie if exists, otherwise this must be set at a later point
             if ($request->cookies->has('_ga')) {
-                $clientId = $this->parseCookie($request->cookies->get('_ga'))['cid'];
-                $analytics->setClientId($clientId);
+                $cookie = $this->parseCookie($request->cookies->get('_ga'));
+                $analytics->setClientId(array_pop($cookie));
             }
         }
 
@@ -58,12 +58,6 @@ class AnalyticsFactory
      */
     public function parseCookie($cookie)
     {
-        list($version, $domainDepth, $cid1, $cid2) = explode('.', $cookie, 4);
-
-        return array(
-            'version' => $version,
-            'domainDepth' => $domainDepth,
-            'cid' => $cid1.'.'.$cid2,
-        );
+        return explode('.', substr($cookie, 2), 3);
     }
 }
