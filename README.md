@@ -137,9 +137,6 @@ When sandbox mode is enabled, no hits are actually sent to GA. In this case the 
 sandbox: true
 ```
 
-## To Do
-- Unit tests
-
 ## Credits
 
 This package is a wrapper around the GA Measurement Protocol PHP Library. Thanks to the guys @ [THE ICONIC][1] who developed the library!
