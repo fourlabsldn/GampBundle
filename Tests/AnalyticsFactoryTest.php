@@ -16,14 +16,14 @@ final class AnalyticsFactoryTest extends TestCase
     protected $factory;
 
     /**
-     * @var array
+     * @var RequestStack
      */
-    protected $parameters;
+    protected $requestStack;
 
     protected function setUp()
     {
-        $this->factory = new AnalyticsFactory();
-        $this->parameters = [new RequestStack(), 1, 'UA-XXXXXXXX-X', true, false, true, true, false];
+        $this->requestStack = new RequestStack();
+        $this->factory = new AnalyticsFactory($this->requestStack, 1, 'UA-XXXXXXXX-X', true, false, true, true, false);
     }
 
     /**
@@ -31,7 +31,7 @@ final class AnalyticsFactoryTest extends TestCase
      */
     private function callFactory()
     {
-        return call_user_func_array([$this->factory, 'createAnalytics'], $this->parameters);
+        return $this->factory->createAnalytics();
     }
 
     public function testNoRequest()
@@ -43,7 +43,7 @@ final class AnalyticsFactoryTest extends TestCase
 
     public function testEmptyRequest()
     {
-        $this->parameters[0]->push(Request::create(''));
+        $this->requestStack->push(Request::create(''));
 
         $analytics = $this->callFactory();
 
@@ -61,7 +61,7 @@ final class AnalyticsFactoryTest extends TestCase
 
     public function testGaCookie()
     {
-        $this->parameters[0]->push(Request::create('', 'GET', [], ['_ga' => 'GA1.2.1792370315.1501194811']));
+        $this->requestStack->push(Request::create('', 'GET', [], ['_ga' => 'GA1.2.1792370315.1501194811']));
 
         $analytics = $this->callFactory();
 
@@ -75,7 +75,7 @@ final class AnalyticsFactoryTest extends TestCase
 
         $request = Request::create('');
         $request->headers->set('User-Agent', $userAgentString);
-        $this->parameters[0]->push($request);
+        $this->requestStack->push($request);
 
         $analytics = $this->callFactory();
 
