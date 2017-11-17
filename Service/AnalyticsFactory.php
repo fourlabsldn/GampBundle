@@ -5,11 +5,6 @@ namespace FourLabs\GampBundle\Service;
 use Symfony\Component\HttpFoundation\RequestStack;
 use TheIconic\Tracking\GoogleAnalytics\Analytics;
 
-/**
- * Class AnalyticsFactory
- *
- * @author "Emmanuel BALLERY" <emmanuel.ballery@gmail.com>
- */
 class AnalyticsFactory
 {
     /**
@@ -75,8 +70,6 @@ class AnalyticsFactory
     }
 
     /**
-     * Create analytics
-     *
      * @return Analytics
      */
     public function createAnalytics()
@@ -108,7 +101,7 @@ class AnalyticsFactory
 
     /**
      * Parse the GA Cookie and return data as an array.
-     * Example of GA cookie: _ga:GA1.2.492973748.1449824416
+     * Example of GA cookie: _ga:GA1.2.492973748.1449824416.
      *
      * @param $cookie
      *
