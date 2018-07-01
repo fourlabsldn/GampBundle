@@ -16,6 +16,8 @@
             <argument>%kernel.debug%</argument>
             <argument>%gamp.sandbox%</argument>
         </service>
+        <service id="FourLabs\GampBundle\Service\AnalyticsFactory" alias="gamp.analytics.factory">
+        </service>
         <service id="gamp.analytics" class="TheIconic\Tracking\GoogleAnalytics\Analytics" shared="false">
             <factory service="gamp.analytics.factory" method="createAnalytics"/>
         </service>
