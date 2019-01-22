@@ -2,6 +2,7 @@
 
 namespace FourLabs\GampBundle\Service;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use TheIconic\Tracking\GoogleAnalytics\Analytics;
 
@@ -83,18 +84,15 @@ class AnalyticsFactory
             ->setAsyncRequest($this->async && !$this->debug)
             ->setDebug($this->debug);
 
-        if (null !== $request = $this->requestStack->getCurrentRequest()) {
-            $analytics
-                ->setIpOverride($request->getClientIp())
-                ->setUserAgentOverride($request->headers->get('User-Agent', ''));
+        $request = $this->requestStack->getCurrentRequest();
 
-            // Set clientId from "_ga" cookie if exists,
-            // otherwise this must be set at a later point
-            if (null !== $ga = $request->cookies->get('_ga')) {
-                $cookie = $this->parseCookie($ga);
-                $analytics->setClientId(array_pop($cookie));
-            }
+        if (null === $request) {
+            return $analytics;
         }
+
+        $this->handleClientIp($analytics, $request);
+        $this->handleUserAgent($analytics, $request);
+        $this->handleClientId($analytics, $request);
 
         return $analytics;
     }
@@ -103,12 +101,89 @@ class AnalyticsFactory
      * Parse the GA Cookie and return data as an array.
      * Example of GA cookie: _ga:GA1.2.492973748.1449824416.
      *
-     * @param $cookie
+     * @param string $cookie
      *
-     * @return array(version, domainDepth, cid)
+     * @return string[] (version, domainDepth, cid)
      */
     public function parseCookie($cookie)
     {
-        return explode('.', substr($cookie, 2), 3);
+        $parsedCookie = explode('.', substr($cookie, 2), 3);
+        $missingElements = 3 - count($parsedCookie);
+
+        if ($missingElements <= 0) {
+            return $parsedCookie;
+        }
+
+        return array_merge(
+            $parsedCookie,
+            array_fill(0, $missingElements, '')
+        );
+    }
+
+    /**
+     * @param Analytics $analytics
+     * @param Request   $request
+     */
+    private function handleClientIp(Analytics $analytics, Request $request)
+    {
+        $clientIp = $request->getClientIp();
+
+        if (null === $clientIp) {
+            return;
+        }
+
+        $analytics->setIpOverride($clientIp);
+    }
+
+    /**
+     * @param Analytics $analytics
+     * @param Request   $request
+     */
+    private function handleUserAgent(Analytics $analytics, Request $request)
+    {
+        $userAgents = array_filter(
+            (array) $request->headers->get('User-Agent', null, false),
+            static function ($value) {
+                /** @var null|string $value */
+                if (null === $value) {
+                    return false;
+                }
+
+                if ('' === trim($value)) {
+                    return false;
+                }
+
+                return true;
+            }
+        );
+
+        if (empty($userAgents)) {
+            return;
+        }
+
+        $analytics->setUserAgentOverride(implode('; ', $userAgents));
+    }
+
+    /**
+     * @param Analytics $analytics
+     * @param Request   $request
+     */
+    private function handleClientId(Analytics $analytics, Request $request)
+    {
+        // Set clientId from "_ga" cookie if exists,
+        // otherwise this must be set at a later point
+        $ga = $request->cookies->get('_ga');
+
+        if (null === $ga) {
+            return;
+        }
+
+        list($version, $domainDepth, $clientId) = $this->parseCookie($ga);
+
+        if ('' === $clientId) {
+            return;
+        }
+
+        $analytics->setClientId($clientId);
     }
 }
