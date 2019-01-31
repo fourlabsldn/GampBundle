@@ -61,11 +61,9 @@ final class AnalyticsFactoryTest extends TestCase
 
     public function testParseCookieWithEmptyString()
     {
-        list($version, $domainDepth, $cid) = $this->factory->parseCookie('');
+        $parsedCookie = $this->factory->parseCookie('');
 
-        self::assertSame('', $version);
-        self::assertSame('', $domainDepth);
-        self::assertSame('', $cid);
+        self::assertSame(null, $parsedCookie);
     }
 
     public function testGaCookie()
@@ -86,6 +84,26 @@ final class AnalyticsFactoryTest extends TestCase
 
         self::assertInstanceOf(Analytics::class, $analytics);
         self::assertSame(null, $analytics->getClientId());
+    }
+
+    public function testGetIpOverrideIsNull()
+    {
+        $this->requestStack->push(Request::create('', 'GET', [], ['_ga' => ''], [], ['REMOTE_ADDR' => null]));
+
+        $analytics = $this->callFactory();
+
+        self::assertInstanceOf(Analytics::class, $analytics);
+        self::assertSame(null, $analytics->getIpOverride());
+    }
+
+    public function testGetIpOverride()
+    {
+        $this->requestStack->push(Request::create('', 'GET', [], ['_ga' => ''], [], ['REMOTE_ADDR' => '127.0.0.1']));
+
+        $analytics = $this->callFactory();
+
+        self::assertInstanceOf(Analytics::class, $analytics);
+        self::assertSame('127.0.0.1', $analytics->getIpOverride());
     }
 
     /**

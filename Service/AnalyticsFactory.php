@@ -103,21 +103,17 @@ class AnalyticsFactory
      *
      * @param string $cookie
      *
-     * @return string[] (version, domainDepth, cid)
+     * @return null|string[] (version, domainDepth, cid)
      */
     public function parseCookie($cookie)
     {
         $parsedCookie = explode('.', substr($cookie, 2), 3);
-        $missingElements = 3 - count($parsedCookie);
 
-        if ($missingElements <= 0) {
-            return $parsedCookie;
+        if (3 !== count($parsedCookie)) {
+            return null;
         }
 
-        return array_merge(
-            $parsedCookie,
-            array_fill(0, $missingElements, '')
-        );
+        return $parsedCookie;
     }
 
     /**
@@ -178,12 +174,12 @@ class AnalyticsFactory
             return;
         }
 
-        list($version, $domainDepth, $clientId) = $this->parseCookie($ga);
+        $parsedCookie = $this->parseCookie($ga);
 
-        if ('' === $clientId) {
+        if (null === $parsedCookie || !isset($parsedCookie[2]) || '' === $parsedCookie[2]) {
             return;
         }
 
-        $analytics->setClientId($clientId);
+        $analytics->setClientId($parsedCookie[2]);
     }
 }
